@@ -25,14 +25,6 @@ const mapStateToProps = ({ views }) => {
   };
 };
 
-// 1. function으로 하는 법
-// const mapdispatchToProps = (dispatch) => {
-//   return {
-//     addSubscriber: () => dispatch(addSubscriber()),
-//   };
-// };
-
-// 2. object로 하는 법
 const mapdispatchToProps = {
   addView: (number) => addView(number),
 };
