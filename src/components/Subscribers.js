@@ -1,13 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addSubscriber } from "../redux/index2";
+import { addSubscriber } from "../redux";
 
 const Subscribers = ({ count, addSubscriber }) => {
   return (
     <div className="items">
       <p>구독자 수: {count}</p>
       <button onClick={() => addSubscriber()}>구독하기!</button>{" "}
-      {/* button 눌렀을 떄 action 호출하기 */}
     </div>
   );
 };

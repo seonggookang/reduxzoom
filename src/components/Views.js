@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { addView } from "../redux/index2"; // 액션을 가져오는 폴더도 따로 만들어서 불러오기 쉽게 만들자!
+import { addView } from "../redux"; // 액션을 가져오는 폴더도 따로 만들어서 불러오기 쉽게 만들자!
 
 const Views = ({ count, addView }) => {
   const [number, setNumber] = useState(1);
