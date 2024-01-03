@@ -1,36 +1,23 @@
-import React from "react";
-import { connect } from "react-redux";
-import { addSubscriber } from "../redux";
+// useSelector, useDispatch를 쓰면 아주 코드가 짧아지고 직관적임.
 
-const Subscribers = ({ count, addSubscriber }) => {
+import React from "react";
+import { addSubscriber } from "../redux";
+import { useSelector, useDispatch } from "react-redux";
+
+const Subscribers = () => {
+  // 인자가 필요없어짐
+  let count = useSelector((state) => state.subscribers.count); // reducer들을 합친 store
+  let dispatch = useDispatch();
+
+  console.log("state >>> ", count); // 370
+  console.log("dispatch >>> ", dispatch);
+
   return (
     <div className="items">
       <p>구독자 수: {count}</p>
-      <button onClick={() => addSubscriber()}>구독하기!</button>{" "}
+      <button onClick={() => dispatch(addSubscriber())}>구독하기!</button>
     </div>
   );
 };
 
-// state를 function 형태로 작성
-const mapStateToProps = ({ subscribers }) => {
-  return {
-    count: subscribers.count, // count가 Subscribers의 prop으로 전달됨.
-  };
-};
-
-// 1. function으로 하는 법
-// const mapdispatchToProps = (dispatch) => {
-//   return {
-//     addSubscriber: () => dispatch(addSubscriber()),
-//   };
-// };
-
-// 2. object로 하는 법
-const mapdispatchToProps = {
-  addSubscriber,
-};
-
-export default connect(mapStateToProps, mapdispatchToProps)(Subscribers); // connect에 인자로 넣어줌으로써 redux와 연결하기
-
-// redux connect공식문서
-// mapStateToProps
+export default Subscribers;

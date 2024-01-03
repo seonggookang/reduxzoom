@@ -24,8 +24,8 @@ const fetchCommentRequest = () => {
 
 export const fetchComments = () => {
   return (dispatch) => {
-    // 이 dispatch는 어디서 오는가?
-    console.log("dispatch >> ", dispatch);
+    // 이 dispatch는 어디서 오는가? <-- redux-thunk
+    console.log("fetchComments 안의 dispatch >> ", dispatch);
     dispatch(fetchCommentRequest);
     fetch("https://jsonplaceholder.typicode.com/comments")
       .then((res) => res.json())

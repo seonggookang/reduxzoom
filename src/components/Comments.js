@@ -1,16 +1,22 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
 import { fetchComments } from "../redux/comments/actions";
+import { useSelector, useDispatch } from "react-redux";
 
-const Comments = ({ fetchComments, loading, comments }) => {
+// const Comments = ({ fetchComments, loading, comments }) => {
+const Comments = () => {
+  let items = useSelector((state) => state.comments.items); // reducer들을 합친 store
+  let loading = useSelector((state) => state.comments.loading);
+  let dispatch = useDispatch();
+
   // 렌더링되면 한 번 실행 될 수 있도록
   useEffect(() => {
-    fetchComments();
+    dispatch(fetchComments());
   }, []);
+
   const commentsItems = loading ? (
     <div>...is loading</div>
   ) : (
-    comments.map((comment) => (
+    items.map((comment) => (
       <div key={comment.id}>
         <h3>{comment.name}</h3>
         <p>{comment.email}</p>
@@ -18,17 +24,8 @@ const Comments = ({ fetchComments, loading, comments }) => {
       </div>
     ))
   );
+
   return <div className="comments">{commentsItems}</div>;
 };
 
-const mapStateToProps = ({ comments }) => {
-  return {
-    comments: comments.items,
-  };
-};
-
-const mapdispatchToProps = {
-  fetchComments,
-};
-
-export default connect(mapStateToProps, mapdispatchToProps)(Comments);
+export default Comments;
